@@ -1,0 +1,8 @@
+---
+- name: Init Fedora for Ansible with Vagrant
+  hosts: fedora
+  user: vagrant
+  sudo: yes
+
+  roles:
+    - init

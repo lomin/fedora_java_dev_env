@@ -1,0 +1,30 @@
+---
+- name: Install git
+  yum: name=git state=present
+
+- name: Install ca-certs
+  yum: name=ca-certificates state=present
+
+- name: Create cert dir
+  file: state=directory path=/etc/pki/ca-trust/source/anchors/{{domain}}/
+
+- name: Upload cert
+  copy: src={{local_files}}ca.crt dest=/etc/pki/ca-trust/source/anchors/{{domain}}/
+
+- name: Update certs
+  command: update-ca-trust
+
+- name: Create the bin directory
+  file: state=directory path={{home}}bin/ owner={{user}} group={{user}}
+
+- name: Upload java rpm
+  copy: src={{local_files}}{{java}} dest={{home}}{{java}}
+
+- name: Install java rpm
+  command: /usr/bin/yum -y --nogpgcheck localinstall {{home}}{{java}}
+
+- name: Install tig
+  yum: name=tig state=present
+
+- name: Install ack
+  yum: name=ack state=present

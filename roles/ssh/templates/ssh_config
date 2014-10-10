@@ -1,0 +1,3 @@
+Host {{git_host}}
+ HostName {{git_host_name}}
+ IdentityFile {{ssh_dir}}{{ssh_key_insec}}

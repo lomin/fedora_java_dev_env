@@ -1,0 +1,54 @@
+---
+- name: Create vim and bundle dir
+  file: path={{home}}.vim/bundle/ state=directory
+
+- name: Pull vimfiles
+  git: repo=git://github.com/lomin/vimfiles.git dest={{home}}vimfiles/ accept_hostkey=true
+
+- name: Link .vimrc
+  file: src={{home}}vimfiles/.vimrc dest={{home}}.vimrc state=link force=yes
+
+- name: Synchronize vim bundles
+  git: repo=git://github.com/Shougo/neobundle.vim.git dest={{home}}.vim/bundle/neobundle/ accept_hostkey=true
+
+- name: Create the bin directory
+  file: state=directory path={{home}}bin/
+
+- name: Upload lein install file
+  copy: src={{local_files}}{{lein}} dest={{home}}bin/lein mode=0755
+
+- name: Upload .bashrc
+  copy: src=.bashrc dest={{home}} mode=0644
+
+- name: Upload IDEA java rpm
+  copy: src={{local_files}}{{idea_tar_gz}} dest={{home}}{{idea_tar_gz}}
+
+- name: Create the IDEA directory
+  file: state=directory path={{idea_dir}} owner={{user}} group={{user}}
+
+- name: Install IDEA 
+  command: tar xzf {{home}}{{idea_tar_gz}} creates={{idea_dir}}{{idea}} chdir={{home}}IDEA
+
+- name: Copy IDEA starter
+  template: src=idea.sh dest={{idea_dir}} mode=0775
+
+- name: Create custom desktop dir
+  file: path={{home}}.local/share/applications/ state=directory
+
+- name: Copy IDEA Desktop-Item
+  template: src=idea.desktop dest={{home}}.local/share/applications/ mode=0775
+
+- name: Synchronize intellij-colors-solarized
+  git: repo=git://github.com/jkaving/intellij-colors-solarized.git dest={{home}}intellij-colors-solarized/ 
+
+- name: Gnome solarized
+  git: repo=git://github.com/sigurdga/gnome-terminal-colors-solarized.git dest={{home}}gnome-terminal-colors-solarized
+
+- name: Create the {{dev_dir}} directory
+  file: state=directory path={{dev_dir}}
+
+- name: Pull Dev-Project
+  git: repo=git@{{git_host}}:{{project_name}}.git dest={{dev_dir}}{{project_name}}/ version={{project_branch}} accept_hostkey=true
+
+- name: Copy git config for Dev-Project
+  copy: src= {{git_config_file}} dest={{dev_dir}}{{project_name}}/.git/config mode=0644

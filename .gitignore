@@ -1,0 +1,4 @@
+.DS_Store
+.vagrant
+vars/ssh.yml
+host_vars/fedora

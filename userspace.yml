@@ -1,0 +1,8 @@
+---
+- name: Install prerequisites
+  hosts: fedora
+  user: "{{user}}"
+  sudo: no
+
+  roles:
+    - userspace

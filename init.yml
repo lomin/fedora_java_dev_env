@@ -1,0 +1,7 @@
+---
+- name: Init Fedora for Ansible
+  hosts: fedora
+  user: root
+
+  roles:
+    - init

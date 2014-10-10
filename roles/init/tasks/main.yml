@@ -1,0 +1,18 @@
+---
+- name: Install SELinux python bindings
+  yum: name=libselinux-python.x86_64 state=present
+
+- name: Install openssl
+  yum: name=openssl state=present
+
+- name: Add user "{{user}}"
+  user: name={{user}}
+
+- name: Upload sudoers file
+  template: src=sudoers dest=/etc/sudoers
+
+- name: Create ssh dir
+  file: state=directory path={{ssh_dir}} owner={{user}} group={{user}} mode=755 recurse=yes
+
+- name: Add authorized_keys
+  copy: src={{ssh_authorized_key}} dest={{ssh_dir}}authorized_keys owner={{user}} group={{user}}

@@ -1,0 +1,5 @@
+---
+- include: init_vagrant.yml
+- include: ssh.yml
+- include: install.yml
+- include: userspace.yml

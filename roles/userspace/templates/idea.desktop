@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Name=idea
+Exec={{idea_dir}}idea.sh
+Icon={{idea_dir}}idea.png

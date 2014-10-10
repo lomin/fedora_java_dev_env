@@ -1,0 +1,15 @@
+---
+- name: Create the SSH directory
+  file: state=directory path={{ssh_dir}}
+
+- name: Upload ssh-config
+  template: src=ssh_config dest={{ssh_dir}}/config mode=0600
+
+- name: Upload ssh private key
+  copy: src={{local_files}}{{ssh_key}} dest={{ssh_dir}}{{ssh_key}} mode=0600
+
+- name: Upload ssh public key
+  copy: src={{local_files}}{{ssh_key}}.pub dest={{ssh_dir}}{{ssh_key}}.pub
+
+- name: Deccrypt ssh key
+  shell: touch {{ssh_key_insec}} && chmod 0600 {{ssh_key_insec}} && openssl rsa -in {{ssh_key}} -out {{ssh_key_insec}} -passin pass:{{ ssh_pw }} chdir={{ssh_dir}} creates={{ssh_dir}}{{ssh_key_insec}}

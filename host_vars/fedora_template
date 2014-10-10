@@ -1,0 +1,25 @@
+---
+local_files: INSERT_HERE
+
+user: INSERT_HERE
+home: "/home/{{user}}/"
+# the ssh key that exists on the machine, which starts the provisioning
+ssh_authorized_key: INSERT_HERE
+ssh_dir: "{{home}}.ssh/"
+ssh_key: INSERT_HERE
+ssh_key_insec: "{{ssh_key}}_insec"
+git_host: INSERT_HERE
+git_host_name: INSERT_HERE
+domain: INSERT_HERE
+cert: INSERT_HERE
+java: INSERT_HERE
+idea_tar_gz: INSERT_HERE
+# the uncompressed idea dirname
+idea: INSERT_HERE
+# the destination dir for idea
+idea_dir: "{{home}}IDEA/"
+dev_dir: "{{home}}INSERT_HERE"
+project_name: INSERT_HERE
+project_branch: INSERT_HERE
+git_config_file: INSERT_HERE
+lein: INSERT_HERE
