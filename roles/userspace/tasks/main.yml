@@ -18,7 +18,7 @@
   copy: src={{local_files}}{{lein}} dest={{home}}bin/lein mode=0755
 
 - name: Upload .bashrc
-  copy: src=.bashrc dest={{home}} mode=0644
+  template: src=.bashrc dest={{home}} mode=0644
 
 - name: Upload IDEA java rpm
   copy: src={{local_files}}{{idea_tar_gz}} dest={{home}}{{idea_tar_gz}}
@@ -31,6 +31,9 @@
 
 - name: Copy IDEA starter
   template: src=idea.sh dest={{idea_dir}} mode=0775
+
+- name: Copy idea desktop icon
+  copy: src=idea.png dest={{idea_dir}}
 
 - name: Create custom desktop dir
   file: path={{home}}.local/share/applications/ state=directory

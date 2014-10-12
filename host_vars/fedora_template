@@ -13,6 +13,7 @@ git_host_name: INSERT_HERE
 domain: INSERT_HERE
 cert: INSERT_HERE
 java: INSERT_HERE
+java_version: jdk1.7.0_65
 idea_tar_gz: INSERT_HERE
 # the uncompressed idea dirname
 idea: INSERT_HERE

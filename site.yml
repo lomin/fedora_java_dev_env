@@ -1,6 +1,6 @@
 ---
 - include: init.yml
 - include: ssh.yml
-- include: userspace.yml
 - include: install.yml
+- include: userspace.yml
 
