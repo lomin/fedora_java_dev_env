@@ -1,0 +1,15 @@
+---
+- name: Install SELinux python bindings
+  yum: name=libselinux-python.x86_64 state=present
+
+- name: Uninstall VIM-minimal
+  yum: name=vim-minimal state=absent
+
+- name: Install VIM
+  yum: name=vim state=present
+
+- name: Install VIM-minimal
+  yum: name=vim-minimal state=present
+
+- name: Install SUDO
+  yum: name=sudo state=present
