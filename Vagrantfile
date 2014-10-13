@@ -7,6 +7,11 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "TFDuesing/Fedora-20"
 
+
+  config.vm.network :forwarded_port, guest: 27017, host: 27017
+  config.vm.network :forwarded_port, guest: 9091, host: 9091
+  config.vm.network :private_network, ip: "10.11.12.13"
+  config.vm.synced_folder "./data", "/var/data", :create => true, :mount_options => ['dmode=777,fmode=777']
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -45,7 +50,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     # Don't boot with headless mode
-    vb.gui = true
+    # vb.gui = true
  
     # Use VBoxManage to customize the VM. For example to change memory:
     # vb.customize ["modifyvm", :id, "--memory", "1024"]
