@@ -54,4 +54,5 @@
   git: repo=git@{{git_host}}:{{project_name}}.git dest={{dev_dir}}{{project_name}}/ version={{project_branch}} accept_hostkey=true
 
 - name: Copy git config for Dev-Project
-  copy: src= {{git_config_file}} dest={{dev_dir}}{{project_name}}/.git/config mode=0644
+  copy: src={{git_config_file}} dest={{dev_dir}}{{project_name}}/.git/config mode=0644
+
