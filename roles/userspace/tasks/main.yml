@@ -9,7 +9,7 @@
   file: src={{home}}vimfiles/.vimrc dest={{home}}.vimrc state=link force=yes
 
 - name: Synchronize vim bundles
-  git: repo=git://github.com/Shougo/neobundle.vim.git dest={{home}}.vim/bundle/neobundle/ accept_hostkey=true
+  git: repo=git://github.com/Shougo/neobundle.vim.git dest={{home}}.vim/bundle/neobundle.vim accept_hostkey=true
 
 - name: Create the bin directory
   file: state=directory path={{home}}bin/
