@@ -6,13 +6,13 @@
   yum: name=ca-certificates state=present
 
 - name: Create cert dir
-  file: state=directory path=/etc/pki/ca-trust/source/anchors/{{domain}}/
+  file: state=directory path=/etc/pki/ca-trust/source/anchors/
 
 - name: Upload cert
-  copy: src={{local_files}}ca.crt dest=/etc/pki/ca-trust/source/anchors/{{domain}}/
+  copy: src={{local_files}}ca.crt dest=/etc/pki/ca-trust/source/anchors/
 
 - name: Update certs
-  command: update-ca-trust
+  command: /usr/bin/update-ca-trust
 
 - name: Create the bin directory
   file: state=directory path={{home}}bin/ owner={{user}} group={{user}}
@@ -28,3 +28,9 @@
 
 - name: Install ack
   yum: name=ack state=present
+
+- name: Install gcc
+  yum: name=gcc state=present
+
+- name: Install ctags
+  yum: name=ctags-etags state=present

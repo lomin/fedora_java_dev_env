@@ -10,7 +10,6 @@ ssh_key: INSERT_HERE
 ssh_key_insec: "{{ssh_key}}_insec"
 git_host: INSERT_HERE
 git_host_name: INSERT_HERE
-domain: INSERT_HERE
 cert: INSERT_HERE
 java: INSERT_HERE
 java_version: jdk1.7.0_65
